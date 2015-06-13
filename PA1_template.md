@@ -127,6 +127,14 @@ The mean and median are both getting lower after using the mean of the day to fi
 1. Create a new factor variable in the dataset with two levels – “weekday” and “weekend” 1indicating whether a given date is a weekday or weekend day.
 
 ```r
+Sys.setlocale("LC_TIME", "English")
+```
+
+```
+## [1] "English_United States.1252"
+```
+
+```r
 data.wk <- data.f
 daytype <- function(date) {
     if (weekdays(as.Date(date)) %in% c("Saturday", "Sunday")) {
@@ -141,9 +149,9 @@ data.wk$daytype <- as.factor(sapply(data.wk$date, daytype))
 
 ```r
 step.int.wk = aggregate(steps ~ interval + daytype, data.wk, mean)
-
+#knitr seems have something wrong with ggplot2 facet
 p<-ggplot(step.int.wk, aes(x = interval, y = steps)) 
-p+ geom_line() + facet_wrap( ~ daytype,  ncol = 1)
+p+ geom_line() + facet_wrap( ~ daytype, ncol =1)
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
