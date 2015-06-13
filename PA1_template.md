@@ -149,7 +149,6 @@ data.wk$daytype <- as.factor(sapply(data.wk$date, daytype))
 
 ```r
 step.int.wk = aggregate(steps ~ interval + daytype, data.wk, mean)
-#knitr seems have something wrong with ggplot2 facet
 p<-ggplot(step.int.wk, aes(x = interval, y = steps)) 
 p+ geom_line() + facet_wrap( ~ daytype, ncol =1)
 ```

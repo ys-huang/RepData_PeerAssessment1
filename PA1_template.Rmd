@@ -92,7 +92,6 @@ data.wk$daytype <- as.factor(sapply(data.wk$date, daytype))
 2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 ```{r }
 step.int.wk = aggregate(steps ~ interval + daytype, data.wk, mean)
-#knitr seems have something wrong with ggplot2 facet
 p<-ggplot(step.int.wk, aes(x = interval, y = steps)) 
 p+ geom_line() + facet_wrap( ~ daytype, ncol =1)
 
